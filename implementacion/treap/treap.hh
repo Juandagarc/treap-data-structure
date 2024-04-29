@@ -4,35 +4,41 @@
 
 #include <cstdlib>
 
-// Definición de la estructura Nodo, que representa cada nodo en el Treap.
 struct Nodo {
     int llave;
     int prioridad;
-    Nodo *izquierdo, *derecho;
+    Nodo* izquierdo;
+    Nodo* derecho;
 
     Nodo(int _llave); // Constructor que inicializa un nodo.
 };
 
-// Definición de la clase Treap.
 class Treap {
 private:
-    Nodo* raiz; // Raíz del Treap.
+    Nodo* raiz;
 
     // Funciones privadas para rotar los nodos y mantener las propiedades del Treap.
     Nodo* rotarDerecha(Nodo* y);
     Nodo* rotarIzquierda(Nodo* x);
 
-    // Función recursiva para insertar un nuevo llave en el subárbol con raíz en t.
+    // Funciones privadas recursivas para insertar, eliminar y encontrar un nodo.
     Nodo* insertar(Nodo* t, int llave);
+    Nodo* eliminar(Nodo* t, int llave);
+    Nodo* encontrar(Nodo* t, int llave);
 
     // Función auxiliar para realizar el recorrido inorder.
     void inorder(Nodo* t);
+
+    // Función auxiliar para encontrar el nodo con el valor mínimo en el subárbol.
+    Nodo* minimo(Nodo* t);
 
 public:
     Treap(); // Constructor que inicializa el Treap.
     ~Treap(); // Destructor para limpiar la memoria.
 
     void insertar(int llave); // Inserta un nuevo llave en el Treap.
+    void eliminar(int llave); // Elimina un llave del Treap.
+    bool encontrar(int llave); // Busca un llave en el Treap.
     void imprimir(); // Imprime el Treap en orden.
 };
 
